@@ -1,0 +1,11 @@
+{
+ "title": "Tu tập là gì?",
+ "parts": 3,
+ "images": [
+  6,
+  5,
+  5
+ ],
+ "source": "budda-app 74292fb:src/content/lessons/02-tu-la-lam-sach-tam.md",
+ "video": "02-tu-tap-la-gi"
+}

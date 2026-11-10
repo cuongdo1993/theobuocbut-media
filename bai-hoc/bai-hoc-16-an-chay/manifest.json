@@ -1,0 +1,11 @@
+{
+ "title": "Bụt có ăn chay không?",
+ "parts": 3,
+ "images": [
+  6,
+  5,
+  4
+ ],
+ "source": "budda-app 74292fb:src/content/lessons/41-an-chay.md",
+ "video": null
+}
