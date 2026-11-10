@@ -1,0 +1,9 @@
+<!doctype html><meta charset="utf-8"><title>OAuth callback</title>
+<p>Đăng nhập xong. Bấm nút để chép mã.</p>
+<button id="c" style="font-size:24px;padding:12px 24px">Chép mã</button>
+<script>
+document.getElementById('c').onclick=function(){
+  var code=new URLSearchParams(location.search).get('code')||'';
+  navigator.clipboard.writeText(code).then(function(){document.body.insertAdjacentHTML('beforeend','<p>Đã chép.</p>')});
+};
+</script>
