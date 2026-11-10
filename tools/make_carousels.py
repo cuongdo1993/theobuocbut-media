@@ -114,14 +114,14 @@ def body_text(title, part, i, n):
     head = f"{title} (Phần {i}/{n})"
     first = next(p for p in part.split("\n\n") if not p.startswith("## "))
     tail = f"Lướt ảnh để đọc trọn phần {i}." + (f" Mai mình kể tiếp phần {i + 1}." if i < n else "")
-    room = 500 - len(head) - len(tail) - len(LINKS) - 8
+    room = 500 - len(head) - len(tail) - 6
     lead = ""
     for s in re.split(r"(?<=[.!?…])\s+", first):
         if len(lead) + len(s) + 1 > room:
             break
         lead = f"{lead} {s}".strip()
     lead = lead or first[:room - 1].rsplit(" ", 1)[0] + "…"
-    return unicodedata.normalize("NFC", f"{head}\n\n{lead}\n\n{tail}\n\n{LINKS}")
+    return unicodedata.normalize("NFC", f"{head}\n\n{lead}\n\n{tail}")  # CD 10/11: no links in posts, only in the bio
 
 
 def main(filt=""):
