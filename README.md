@@ -13,6 +13,6 @@ Tên file trùng tên thư mục trong `budda-social/posts/` và `budda-social/s
 ## Kho trên máy là bản gọn, không giữ mp4 (CD 15/11)
 
 Bản clone trên máy dùng `git clone --filter=blob:none` + sparse-checkout (`/*` và `!*.mp4`): mọi file chữ, json, ảnh đều có, còn video mp4 chỉ nằm trên GitHub (CI vẫn lấy đủ).
-- Thêm video mới: chép mp4 vào đúng chỗ (shorts/<tên>/video.mp4, longs/<tên>/video.mp4, hoặc video/<tên>.mp4 ở theobuocbut-media), rồi chạy `py scripts/day_video.py "lời commit" <đường dẫn>` (theobuocbut-media: `py tools/day_video.py ...`). Script dùng `git add --sparse`, commit, push thường, rồi `git sparse-checkout reapply` để mp4 rời khỏi ổ đĩa.
+- Thêm video mới: chép mp4 vào đúng chỗ (shorts/<tên>/video.mp4, longs/<tên>/video.mp4, hoặc video/<tên>.mp4 ở theobuocbut-media), rồi chạy `py scripts/day_video.py "lời commit" <đường dẫn>` (theobuocbut-media: `py tools/day_video.py ...`). Đừng `git add`/commit video ở kho này. Script đẩy từ một bản clone tạm (không tải video), push thường, xoá bản tạm và bản mp4 trên máy, rồi `git pull` (không tải video về). Nhờ vậy .git không phình ra (17/11: commit tại chỗ làm .git lên 4,7 GB).
 - Cần một video về máy: `git show HEAD:shorts/<tên>/video.mp4 > ten.mp4`. Lấy lại đủ cả kho: `git sparse-checkout disable`.
-- Mỗi tháng chạy `git repack -a -d --filter=blob:none` để bỏ blob video đã tải về khỏi .git.
+- Đừng chạy lệnh đọc kích thước từng file trên GitHub kiểu `git ls-tree -l` (nó tải hết video về). Nếu .git đã lỡ phình to: clone lại bản gọn (`git clone --filter=blob:none --no-checkout`, sparse-checkout `/*` và `!*.mp4`), so khớp file không phải mp4, rồi thay thư mục cũ.
