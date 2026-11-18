@@ -63,10 +63,14 @@ def main():
         shutil.rmtree(tmp, ignore_errors=True)
     # the files are on GitHub now: drop the local copies (untracked ones) / local edits (tracked ones), then pull
     for f in files:
-        if f in tracked:
+        full = os.path.join(ROOT, f)
+        if f in tracked and not f.lower().endswith(".mp4"):
             git(ROOT, "checkout", "--", f)
-        elif os.path.exists(os.path.join(ROOT, f)):
-            os.remove(os.path.join(ROOT, f))
+        elif os.path.exists(full):
+            # a replaced video (tracked but kept off the disk by sparse-checkout): just delete it, never
+            # "git checkout" it, which would download the old video into .git (18/11: 107-khoa-thien-1)
+            os.remove(full)
+    git(ROOT, "sparse-checkout", "reapply")
     git(ROOT, "pull", "-q", "--ff-only", "origin", "main")
     print("pushed; no video kept on the PC (GitHub has it)")
 
