@@ -2,10 +2,10 @@
  "title": "Có một mùi bay ngược chiều gió",
  "parts": 3,
  "images": [
-  7,
+  8,
   4,
   4
  ],
- "source": "budda-app 74292fb:src/content/lessons/10-am-duc.md",
+ "source": "budda-app d1e077b:src/content/lessons/10-am-duc.md",
  "video": "23-am-duc"
 }

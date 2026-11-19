@@ -16,7 +16,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cards  # noqa: E402
 
 APP, SOCIAL, VIDEOS = "D:/Budda/budda-app", "D:/Budda/budda-social", "D:/Budda/Video/bai-viet-video"
-LESSON_REF = os.environ.get("LESSON_REF", "74292fb")
+# CD: every text posted online comes from the newest lesson -> default = budda-app origin/main (fetched below)
+LESSON_REF = os.environ.get("LESSON_REF", "origin/main")
 LINKS = "YouTube: https://www.youtube.com/@theobuocbut/shorts\nTikTok: https://www.tiktok.com/@theobuocbut"
 APP_WORDS = re.compile(r"(?i)ứng dụng|\bapp\b")
 
@@ -27,6 +28,8 @@ def git_show(path):
 
 
 def lesson_files():
+    if LESSON_REF.startswith("origin/"):
+        subprocess.run(["git", "-C", APP, "fetch", "-q", "origin"], check=True)
     names = subprocess.run(["git", "-C", APP, "ls-tree", "--name-only", f"{LESSON_REF}", "src/content/lessons/"],
                            capture_output=True, encoding="utf-8").stdout.split()
     out = {}
@@ -150,7 +153,7 @@ def main(filt=""):
             t = body_text(title, part, i, len(parts))
             assert len(t) <= 500, (folder, i, len(t))
             open(f"{out}/p{i}.txt", "w", encoding="utf-8", newline="\n").write(t + "\n")
-        json.dump({"title": title, "parts": len(parts), "images": counts, "source": f"budda-app {LESSON_REF}:{src}",
+        json.dump({"title": title, "parts": len(parts), "images": counts, "source": f"budda-app {subprocess.run(['git', '-C', APP, 'rev-parse', '--short', LESSON_REF], capture_output=True, encoding='utf-8').stdout.strip()}:{src}",
                    "video": os.path.basename(vdir.rstrip("/\\")) if vdir else None},
                   open(f"{out}/manifest.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print(folder, len(parts), counts, "video" if vdir else "cover")

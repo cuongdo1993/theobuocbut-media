@@ -3,9 +3,9 @@
  "parts": 3,
  "images": [
   5,
-  4,
-  4
+  5,
+  5
  ],
- "source": "budda-app 74292fb:src/content/lessons/23-song-dung-nghe.md",
+ "source": "budda-app d1e077b:src/content/lessons/23-song-dung-nghe.md",
  "video": null
 }

@@ -58,6 +58,9 @@ def paginate(md):
     for kind, lines in blocks(md):
         for k, ln in enumerate(lines):
             need = LH + (14 if kind == "h" and k == 0 and cur else 0)
+            if kind == "h" and k == 0:
+                # a heading never splits across pages and keeps 2 body lines under it
+                need += (len(lines) - 1) * LH + PARA + 2 * LH
             if y + need > bottom:
                 pages.append(cur); cur, y = [], top
             if kind == "h" and k == 0 and cur:

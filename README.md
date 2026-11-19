@@ -6,7 +6,7 @@
 |---|---|
 | `video/<tên short>.mp4` | video short (720p, ≤ 8 MB) đăng Threads lúc 20:00 |
 | `anh/<tên bài>.jpg` | ảnh đi kèm bài đăng buổi sáng |
-| `threads/<tên bài>.txt` | chữ của bài Threads 07:00 (chuyện mở đầu + câu hỏi). Sửa file này là bài đăng đổi theo |
+| `threads/<tên bài>.txt` | BẢN CŨ (09/11), không còn dùng: bài 07:00 giờ là carousel lấy chữ từ `bai-hoc/<bài>/p<i>.txt` + ảnh `p<i>-*.jpg` (dựng bằng `tools/make_carousels.py` từ bài mới nhất budda-app origin/main). Chỉ bài không chia phần (bai-01..07, đã đăng/bỏ) mới đọc file này |
 
 Tên file trùng tên thư mục trong `budda-social/posts/` và `budda-social/shorts/`. Không để link trong bài (chờ có app Android).
 

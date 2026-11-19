@@ -3,9 +3,9 @@
  "parts": 3,
  "images": [
   6,
-  4,
+  5,
   3
  ],
- "source": "budda-app 74292fb:src/content/lessons/29-tam-tu.md",
+ "source": "budda-app d1e077b:src/content/lessons/29-tam-tu.md",
  "video": null
 }
